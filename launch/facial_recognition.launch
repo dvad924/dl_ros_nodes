@@ -1,0 +1,13 @@
+<launch>
+  <!-- <node name="camera" pkg="cv_camera" type="cv_camera_node" /> -->
+  <remap from="camera/image_raw" to="ez_robo_cam/image_raw" />   
+  <node name="yolo2"  pkg="darknet"   type="darknet" />
+  <node name="recog"  pkg="face_processing"      type="mytest.py" /> 
+  <node name="server" pkg="web_video_server" type="web_video_server" />
+  <machine name="vivi" address="169.226.142.38" env-loader="/home/bmage/setup.bash" user="bmage" />
+  <!--   <node machine="vivi" name="ez_robo_imgs" pkg="ez-robots" type="imagehandler.py" /> -->
+
+  <!-- <node machine="vivi" name="ez_robo_cmdr" pkg="ez-robots" type="commander.py"  -->/>
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />  
+</launch>
